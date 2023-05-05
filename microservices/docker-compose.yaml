@@ -1,0 +1,115 @@
+version: '3.3'  # version of compose format
+
+services:
+  addition:
+    build: ./landing/app/addition
+    ports: 
+      - 5051:5051
+    networks:
+       sample:
+          aliases:
+            - addition 
+  subtraction:
+    build: ./landing/app/subtraction
+    ports: 
+      - 5052:5052
+    networks:
+       sample:
+          aliases:
+            - subtraction 
+  multiplication:
+    build: ./landing/app/multiplication
+    ports: 
+      - 5053:5053
+    networks:
+       sample:
+          aliases:
+            - multiplication 
+  division:
+    build: ./landing/app/division
+    ports: 
+      - 5054:5054
+    networks:
+       sample:
+          aliases:
+            - division 
+  equalto:
+    build: ./landing/app/equalto
+    ports: 
+      - 5055:5055
+    networks:
+       sample:
+          aliases:
+            - equalto
+  exponent:
+    build: ./landing/app/exponent
+    ports: 
+      - 5056:5056
+    networks:
+       sample:
+          aliases:
+            - exponent
+  gcd:
+    build: ./landing/app/gcd
+    ports: 
+      - 5057:5057
+    networks:
+       sample:
+          aliases:
+            - gcd
+  greaterthan:
+    build: ./landing/app/greatthan
+    ports: 
+      - 5058:5058
+    networks:
+       sample:
+          aliases:
+            - greatthan
+  lcm:
+    build: ./landing/app/lcm
+    ports: 
+      - 5059:5059
+    networks:
+       sample:
+          aliases:
+            - lcm
+  lessthan:
+    build: ./landing/app/lessthan
+    ports: 
+      - 5060:5060
+    networks:
+       sample:
+          aliases:
+            - lessthan
+  modulus:
+    build: ./landing/app/modulus
+    ports: 
+      - 5061:5061
+    networks:
+       sample:
+          aliases:
+            - modulus
+  landing-service:
+    build: ./landing  # path is relative to docker-compose.yml location
+    hostname: landing-service
+    ports:
+      - 5050:5050  # host:container
+    depends_on:
+      - addition
+      - multiplication
+      - subtraction
+      - division
+      - equalto
+      - exponent
+      - gcd
+      - greaterthan
+      - lcm
+      - lessthan
+      - modulus
+    networks:
+      sample:
+        aliases:
+          - landing-service
+  # Add more services below
+networks:
+  sample:
